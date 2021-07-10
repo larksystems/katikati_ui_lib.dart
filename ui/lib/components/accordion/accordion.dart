@@ -32,9 +32,10 @@ class AccordionItem {
   DivElement _bodyWrapper;
 
   bool get isOpen => _isOpen;
+  String get id => _id;
 
-  void set id (String newID) {
-    _id = newID;
+  void set id(String value) {
+    _id = value;
     renderElement.dataset['id'] = 'accordion-item-${_id ?? ""}';
   }
 
@@ -123,11 +124,8 @@ class Accordion {
   }
 
   void updateItem(String id, AccordionItem item) {
-    _accordionItems.forEach((accordionItem) {
-      if (item._id == id) {
-        accordionItem = item;
-      }
-    });
+    var index = _accordionItems.indexWhere((accordionItem) => accordionItem.id == id);
+    _accordionItems[index] = item;
   }
 
   void collapseAllItems() {
