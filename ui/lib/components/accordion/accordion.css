@@ -24,6 +24,7 @@
 .accordion-indicator {
   display: inline-block;
   font-size: 18px;
+  width: 12px;
   margin-right: 12px;
   cursor: pointer;
 }

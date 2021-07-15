@@ -2,6 +2,7 @@ import 'dart:html';
 import "dart:math";
 import 'package:katikati_ui_lib/components/button/button.dart';
 import 'package:katikati_ui_lib/components/nav/button_links.dart';
+import 'package:katikati_ui_lib/components/turnline/turnline.dart';
 import 'package:uuid/uuid.dart';
 
 import 'package:katikati_ui_lib/components/nav/nav_header.dart';
@@ -56,6 +57,7 @@ ButtonElement conversationSimulateDraft = querySelector('#conversation-item-simu
 ButtonElement conversationAddWarning = querySelector("#conversation-item-add-warning");
 ButtonElement conversationRemoveWarning = querySelector("#conversation-item-remove-warning");
 DivElement tagContainer = querySelector('#tag--wrapper');
+DivElement turnlinesContainer = querySelector('#turnlines');
 
 Map<String, ButtonElement> setURLParamsButton = {
   "conversation-id": querySelector('#set-url-params--conversation-id') as ButtonElement,
@@ -392,6 +394,26 @@ void main() {
   tagContainer
     ..append(editAddButton.renderElement)
     ..append(editAddContainer);
+
+  Turnline turnline1 = new Turnline('Demog survey');
+  turnline1.addStep(new TurnlineStep('Consent step', true, true));
+  turnline1.addStep(new TurnlineStep('Age question', true, true));
+  turnline1.addStep(new TurnlineStep('Gener question', true, true));
+  turnlinesContainer.append(turnline1.renderElement);
+
+  Turnline turnline2 = new Turnline('Cohort discussion');
+  turnline2.addStep(new TurnlineStep('Question 1', true, true));
+  turnline2.addStep(new TurnlineStep('Question 2', true, true));
+  turnline2.addStep(new TurnlineStep('Question 3', true, false));
+  turnline2.addStep(new TurnlineStep('Question 4', false, false));
+  turnline2.addStep(new TurnlineStep('Question 5', false, false));
+  turnlinesContainer.append(turnline2.renderElement);
+
+  Turnline turnline3 = new Turnline('Feedback');
+  turnline3.addStep(new TurnlineStep('Feedback', true, false));
+  turnlinesContainer.append(turnline3.renderElement);
+
+  reflowTurnlinesCascade(turnline1);
 }
 
 void printURLViewParams(UrlView urlView) {

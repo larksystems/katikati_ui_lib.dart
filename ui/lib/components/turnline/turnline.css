@@ -1,0 +1,92 @@
+.turnline {
+  vertical-align: middle;
+}
+
+.turnline .turnline__title {
+  margin: 0 6px 6px 10px;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+.turnline__steps {
+  position: relative;
+}
+
+.turnline__steps::before {
+  content: "";
+  height: 100%;
+  width: 1px;
+  background: black;
+  position: absolute;
+  top: 0;
+  left: 47px; /* depends on .step.left-padding + .step.grid-template-columns + .step__contents.left-padding */
+  z-index: 1;
+}
+
+.step {
+  padding: 10px;
+  position: relative;
+}
+
+.step.step--folded {
+  color: #999;
+}
+
+.step.step--unfolded .step__contents {
+  border: 1px dashed #000;
+}
+
+.step__contents {
+  padding: 8px 6px;
+  display: grid;
+  grid-template-columns: 18px 25px auto;
+  border: 1px solid #bbb;
+  border-radius: 5px;
+}
+
+.step__check {
+  margin: 0 auto;
+  padding: 6px 0;
+}
+
+.step__node {
+  margin: 0 auto;
+  padding: 6px 0;
+  cursor: pointer;
+  z-index: 2;
+}
+
+.step__node.step__node--hidden {
+  border: transparent;
+  background: transparent;
+}
+
+.step__node button,
+.step__node button:hover,
+.step__node button:active {
+  background: transparent;
+}
+
+.step__node button span {
+  background: white;
+  font-size: 0.8em;
+}
+
+.step__description {
+  margin: auto;
+  outline: none;
+  cursor: pointer;
+}
+
+.step__info .accordion-item {
+  border: none;
+}
+
+.step__messages,
+.step__tags {
+  font-size: 0.8em;
+  color: #666;
+  margin: 2px 0;
+  text-decoration: underline;
+  cursor: pointer;
+}

@@ -39,6 +39,8 @@ class AccordionItem {
     renderElement.dataset['id'] = 'accordion-item-${_id ?? ""}';
   }
 
+  void Function() onToggle = () {};
+
   AccordionItem(this._id, this.headerElement, this.bodyElement, this._isOpen, {String dataId}) {
     _headerWrapper = DivElement()..className = 'accordion-item__header';
     _indicatorIcon = SpanElement()..className = _isOpen ? COLLAPSE_CSS_CLASSSNAME : EXPAND_CSS_CLASSNAME;
@@ -85,6 +87,7 @@ class AccordionItem {
 
   void toggle() {
     _isOpen ? collapse() : expand();
+    onToggle();
   }
 }
 
